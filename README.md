@@ -1,7 +1,8 @@
 # Insured-Assurance
 
 
- name: Update dependency graph
+ # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts
+- name: Update dependency graph
   uses: advanced-security/maven-dependency-submission-action@571e99aab1055c27a1e230b0969
 
 - name: scp ssh pipelines
@@ -15,11 +16,3 @@
       ./target/*.war => /tmp/
     last_ssh: |
       ls -lart /tmp
-
-- name: Invoke Jenkins Deployment Job
-  uses: appleboy/jenkins-action@master
-  with:
-    url: "http://104.198.139.137:8080"
-    user: "admin"
-    token: ${{ secrets.JENKINS_TOKEN }}
-    job: "TomcatDeployment"
